@@ -14,17 +14,17 @@ namespace Travel_Itinerary
             //объявление-добавление  данных городов 
             Citys[] cities = new Citys[] {
 
-                    new Citys  (1, "Берлин", 399, 175, 1.13),
-                    new Citys  (2, "Прага", 300, 175),
-                    new Citys  (3, "Париж", 350, 220),
-                    new Citys  (4, "Рига", 250, 170),
-                    new Citys  (5, "Лондон", 390, 270),
-                    new Citys (6, "Ватикан", 500, 350),
-                    new Citys  (7, "Палермо", 230, 150),
-                    new Citys  (8, "Варшава", 300, 190),
-                    new Citys  (9, "Кишинев", 215, 110),
-                    new Citys  (10, "Мадрид", 260, 190),
-                    new Citys  (11, "Будапешт", 399, 175)
+                    new Citys  (0, "Берлин", 399, 175, 1.13),
+                    new Citys  (1, "Прага", 300, 175),
+                    new Citys  (2, "Париж", 350, 220),
+                    new Citys  (3, "Рига", 250, 170),
+                    new Citys  (4, "Лондон", 390, 270),
+                    new Citys (5, "Ватикан", 500, 350),
+                    new Citys  (6, "Палермо", 230, 150),
+                    new Citys  (7, "Варшава", 300, 190),
+                    new Citys  (8, "Кишинев", 215, 110),
+                    new Citys  (9, "Мадрид", 260, 190),
+                    new Citys  (10, "Будапешт", 399, 175)
                 };
             return cities;
 
@@ -47,7 +47,7 @@ namespace Travel_Itinerary
                     try
                     {
                         temp = Convert.ToInt32(Console.ReadLine());
-                        select[i - 1] = cities[temp];
+                        select[i-1] = cities[temp];
                         isException = false;
                     }
                     catch
@@ -108,52 +108,52 @@ namespace Travel_Itinerary
         {
             price += secondCity.price;
 
-            if (secondCity.id == 1)
+            if (secondCity.id == 0)
             {
-                price += cities[1].price * cities[1].tax - cities[1].price;
-                price += cities[1].price * 1.04 - cities[1].price;
+                price += cities[0].price * cities[0].tax - cities[0].price;
+                price += cities[0].price * 1.04 - cities[0].price;
             }
+
+            if (secondCity.id == 1)
+                price += cities[1].price * 1.04 - cities[1].price;
 
             if (secondCity.id == 2)
                 price += cities[2].price * 1.04 - cities[2].price;
 
             if (secondCity.id == 3)
+            {
+                price += cities[7].transit;
+                if (firstCity.id == 2) price += cities[3].price * 1.09 - cities[3].price;
                 price += cities[3].price * 1.04 - cities[3].price;
+                if (firstCity.id == 6) price += cities[7].transit + cities[0].transit;
+            }
 
             if (secondCity.id == 4)
+                price += cities[2].price;
+
+
+            if (secondCity.id == 6)
             {
-                price += cities[8].transit;
-                if (firstCity.id == 3) price += cities[4].price * 1.09 - cities[4].price;
-                price += cities[4].price * 1.04 - cities[4].price;
-                if (firstCity.id == 7) price += cities[8].transit + cities[1].transit;
+                if (firstCity.id == 4) price += cities[6].price * 1.07 - cities[6].price;
+                if (firstCity.id == 8) price += cities[6].price * 1.11 - cities[6].price;
+                price += cities[6].price * 1.04 - cities[6].price;
+                if (firstCity.id == 3) price += cities[7].transit + cities[0].transit;
             }
-
-            if (secondCity.id == 5)
-                price += cities[3].price;
-
 
             if (secondCity.id == 7)
-            {
-                if (firstCity.id == 5) price += cities[7].price * 1.07 - cities[7].price;
-                if (firstCity.id == 9) price += cities[7].price * 1.11 - cities[7].price;
                 price += cities[7].price * 1.04 - cities[7].price;
-                if (firstCity.id == 4) price += cities[8].transit + cities[1].transit;
-            }
 
             if (secondCity.id == 8)
-                price += cities[8].price * 1.04 - cities[8].price;
+                price += cities[10].transit;
 
             if (secondCity.id == 9)
-                price += cities[11].transit;
-
-            if (secondCity.id == 10)
             {
-                price += cities[3].transit;
-                price += cities[10].price * 1.04 - cities[10].price;
+                price += cities[2].transit;
+                price += cities[9].price * 1.04 - cities[9].price;
             }
 
-            if (secondCity.id == 11)
-                price += cities[11].price * 1.04 - cities[11].price;
+            if (secondCity.id == 10)
+                price += cities[10].price * 1.04 - cities[10].price;
 
 
 
@@ -164,7 +164,7 @@ namespace Travel_Itinerary
         // вывод городов, с их индексами 
         static void PrintCity(Citys[] cities)
         {
-            for (int i = 1; i < cities.Length; i++)
+            for (int i = 0; i < cities.Length; i++)
                 Console.WriteLine($"{i} - {cities[i].name}");
 
         }
