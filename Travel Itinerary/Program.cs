@@ -15,7 +15,7 @@ namespace Travel_Itinerary
             Citys[] cities = new Citys[] {
 
                     new Citys  (0, "Берлин", 399, 175, 1.13),
-                    new Citys  (1, "Прага", 300, 175),
+                    new Citys  (1, "Прага", 300, 270),
                     new Citys  (2, "Париж", 350, 220),
                     new Citys  (3, "Рига", 250, 170),
                     new Citys  (4, "Лондон", 390, 270),
@@ -24,7 +24,7 @@ namespace Travel_Itinerary
                     new Citys  (7, "Варшава", 300, 190),
                     new Citys  (8, "Кишинев", 215, 110),
                     new Citys  (9, "Мадрид", 260, 190),
-                    new Citys  (10, "Будапешт", 399, 175)
+                    new Citys  (10, "Будапешт", 269, 230)
                 };
             return cities;
 
